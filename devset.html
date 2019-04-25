@@ -9,12 +9,12 @@
     <div class="container" style="margin-top: 10px;">
         <div class="row">
             <button class="waves-effect waves-light btn teal lighten-1 col s5" onclick="getLocation()">Web Location</button>
-            <button class="waves-effect waves-light btn teal lighten-1 col s5 offset-s2" onclick="getLocationViaXam()">Xam Location</button>
+            <button class="waves-effect waves-light btn teal lighten-1 col s5 offset-s2" onclick="performAction('http://getLocation')">Xam Location</button>
         </div>
         <div class="row">
             <button class="waves-effect waves-light btn deep-orange lighten-1 col s5" onclick="showT()"><i class="material-icons left">camera_alt</i>Camera</button>
-            <button class="waves-effect waves-light btn deep-orange lighten-1 col s5 offset-s2"><i class="material-icons right">call</i>Call</button>
-            <input type="file" name="image" accept="image/*" capture="user">
+            <button class="waves-effect waves-light btn deep-orange lighten-1 col s5 offset-s2" onclick="performAction('http://getCall#9024350461')"><i class="material-icons right">call</i>Call</button>
+            <input type="file" name="image" accept="image/*" class="waves-effect waves-light btn deep-orange lighten-1 col s5 offset-s2" capture="camera">
         </div>
 
     </div>
@@ -34,8 +34,8 @@
     function getLocation() {
         navigator.geolocation.getCurrentPosition(showMap);
     }
-    function getLocationViaXam() {
-        window.location.href = "http://getLocation";
+    function performAction(url) {
+        window.location.href = url;
     }
     function showT() {
         M.toast({ html: "Hellow", classes:'rounded' })
