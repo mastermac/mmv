@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <button class="waves-effect waves-light btn d
-                    eep-orange lighten-1  col s5 offset-s2"><i class="material-icons left">camera_alt</i>Camera</button>
+                    eep-orange lighten-1  col s5 offset-s2" onclick="showT()"><i class="material-icons left">camera_alt</i>Camera</button>
             <button class="waves-effect waves-light btn purple lighten-1 col s6"><i class="material-icons right">call</i>Call</button>
         </div>
 
@@ -36,6 +36,9 @@
     }
     function getLocationViaXam() {
         window.location.href = "http://getLocation";
+    }
+    function showT() {
+        M.toast({ html: "Hellow", classes:'rounded' })
     }
     </script>
 </body>
