@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+    <div class="container" style="margin-top: 10px;">
+        <div class="row">
+            <button class="waves-effect waves-light btn green lighten-1 col s5" onclick="createEntity(0)">Local Storage</button>
+            <button class="waves-effect waves-light btn green lighten-1 col s5 offset-s2" onclick="createEntity(1)">Session Storage</button>
+        </div>
+        <div class="row">
+            <button class="waves-effect waves-light btn deep-orange lighten-1 col s5" onclick="createEntity(2)"><i class="material-icons left">camera_alt</i>Cookie</button>
+            <button class="waves-effect waves-light btn deep-orange lighten-1 col s5 offset-s2" onclick="createEntity(3)"><i class="material-icons right">call</i>Indexed DB</button>
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        M.AutoInit();
+    });
+    function createEntity(i) {
+        var input=window.prompt("Enter Value to be stored","MySales Rocks!");
+        switch (i) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                document.cookie = "Cookie_Exp=" + input;
+                M.toast({ html: document.cookie, classes: 'rounded' });
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
+
+    }
+    function showMap(position) {
+        M.toast({ html: 'Lat: ' + position.coords.latitude + ', Long: ' + position.coords.longitude , classes: 'rounded'});
+    }
+    function showInfo(lat, long) {
+        M.toast({ html: 'Lat: ' + lat + ', Long: ' + long, classes: 'rounded' });
+    }
+    function getLocation() {
+        navigator.geolocation.getCurrentPosition(showMap);
+    }
+    function performAction(url) {
+        window.location.href = url;
+    }
+    function showT() {
+        M.toast({ html: "Hellow", classes:'rounded' })
+    }
+    </script>
+</body>
+</html>
+
 
