@@ -44,6 +44,9 @@
                         localforage.getItem('IndexedDB_Exp', function (err, value) {
                             M.toast({ html: "Reading IndexedDb :: " + value, classes: 'rounded' });
                         });
+                    }).catch(function(err) {
+                        // This code runs if there were any errors
+                        M.toast({ html: err, classes: 'rounded' });
                     });
                     break;
                 default:
