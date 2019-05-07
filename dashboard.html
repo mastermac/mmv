@@ -12,6 +12,7 @@
         .home-card {
             height: 150px;
             margin-bottom: 2.5rem;
+            overflow: hidden;
         }
         #cardContent{
             overflow: hidden;
@@ -43,9 +44,6 @@
 </head>
 <body>
     <div class="row" id="cardExp" style="padding: 1rem;">
-        <div id="cardStack">
-
-        </div>
         <div class="fixed-action-btn">
             <a id="menu" class="waves-effect waves-light btn btn-floating btn-large blue z-depth-5  modal-trigger" href="#modal1">
                 <i class="large material-icons">add</i>
@@ -116,7 +114,7 @@
                         url: widgets[i],
                         async: false,
                     }).done(function (data) {
-                        $('#cardStack').append($('<div>').load(baseUrl + data.home + " #cardPanel"));
+                        $('#cardExp').append($('<div>').load(baseUrl + data.home + " #cardPanel"));
                         //$("#cardStack").load(baseUrl + data.home + " #cardPanel");
                         for (let j = 0; j < data.css.length; j++) {
                             $("head").append($("<link rel='stylesheet' href='" + baseUrl + data.css[j]+"'/>"));
@@ -149,8 +147,11 @@
                     }
                 });
             });
-            $('#cardExp').on("click",".del-card", function (e) {
+            $('#cardExp').on("click","div .del-card", function (e) {
                 var elem = $(this).parent().parent();
+                $(elem).fadeOut("slow", function () {
+                    elem.remove();
+                });
                 $.each(allWidgets, function (index, value) {
                     if (elem.hasClass('g' + value) && selectedWidgets.indexOf(index) != -1) {
                         selectedWidgets.splice($.inArray(index, selectedWidgets), 1);
@@ -163,11 +164,11 @@
                 });
             });
 
-            $('#cardExp').on("click", ".down-card", function (e) {
-                moveDown($(this).parent().parent()[0]);
+            $('#cardExp').on("click", "div .down-card", function (e) {
+                moveDown($(this).parent().parent().parent()[0]);
             });
-            $('#cardExp').on("click",".up-card", function (e) {
-                moveUp($(this).parent().parent()[0]);
+            $('#cardExp').on("click","div .up-card", function (e) {
+                moveUp($(this).parent().parent().parent()[0]);
             });
         });
         function addWidgetToHome(value) {
