@@ -101,7 +101,16 @@
         });
 
         $(function () {
-
+            $.getJSON("manifest.json", function (data) {
+                var widgets=data.widgets;
+                for (let i = 0; i < substr.length; ++i) {
+                    // do something with `substr[i]`
+                }
+                console.log();
+                //var items = [];
+                //$.each( data, function( key, val ) {
+                //items.push( "<li id='" + key + "'>" + val + "</li>" );
+            });
             $.each(selectedWidgets, function (index, value) {
                 addWidgetToHome(value);
             });
