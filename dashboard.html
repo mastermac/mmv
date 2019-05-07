@@ -41,6 +41,9 @@
 </head>
 <body>
     <div class="row" id="cardExp" style="padding: 1rem;">
+        <div id="cardStack">
+
+        </div>
         <div class="fixed-action-btn">
             <a id="menu" class="waves-effect waves-light btn btn-floating btn-large blue z-depth-5  modal-trigger" href="#modal1">
                 <i class="large material-icons">add</i>
@@ -103,20 +106,36 @@
         $(function () {
             $.getJSON("manifest.json", function (data) {
                 var widgets=data.widgets;
-                for (let i = 0; i < substr.length; ++i) {
+                for (let i = 0; i < widgets.length; i++) {
+                    var baseUrl = widgets[i].substring(0, widgets[i].lastIndexOf("/") + 1);
+
+                    $.ajax({
+                        dataType: "json",
+                        url: widgets[i],
+                        async: false,
+                    }).done(function (data) {
+                        $('#cardStack').append($('<div>').load(baseUrl + data.home + " #cardPanel"));
+                        //$("#cardStack").load(baseUrl + data.home + " #cardPanel");
+                        for (let j = 0; j < data.css.length; j++) {
+                            $("head").append($("<link rel='stylesheet' href='" + baseUrl + data.css[j]+"'/>"));
+                        }
+                        for (let j = 0; j < data.js.length; j++) {
+                            $("body").append($("<script src='" + baseUrl + data.js[j]+"'><//script>"));
+                        }
+                    });
+                    //console.log(widgets[i]);
                     // do something with `substr[i]`
                 }
-                console.log();
                 //var items = [];
                 //$.each( data, function( key, val ) {
                 //items.push( "<li id='" + key + "'>" + val + "</li>" );
             });
-            $.each(selectedWidgets, function (index, value) {
-                addWidgetToHome(value);
-            });
-            $.each(allWidgets, function (index, value) {
-                addWidgetToConfigurator(index, value);
-            });
+            //$.each(selectedWidgets, function (index, value) {
+            //    addWidgetToHome(value);
+            //});
+            //$.each(allWidgets, function (index, value) {
+            //    addWidgetToConfigurator(index, value);
+            //});
 
             $('#cardExpConfig').on("click",".modal-close", function (e) {
                 var elem = $(this).parent().parent();
